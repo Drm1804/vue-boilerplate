@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const webpack = require("webpack");
-const MomentLocalesPlugin = require("moment-locales-webpack-plugin"); // for moment tree shaking locales
 const PreloadWebpackPlugin = require("@vue/preload-webpack-plugin");
 
 module.exports = {
@@ -96,22 +95,5 @@ module.exports = {
       config.optimization.set("runtimeChunk", true);
     }
 
-    if (process.env.NODE_ENV === "production") {
-      // for moment tree shaking locales
-      // Include only 'en-us' (which is always included) and 'es-us' locales
-      config
-        .plugin("moment")
-        .use(MomentLocalesPlugin, [
-          {
-            localesToKeep: ["es-us"],
-          },
-        ])
-        .use(
-          new webpack.IgnorePlugin({
-            resourceRegExp: /^\.\/locale$/,
-            contextRegExp: /moment$/,
-          })
-        );
-    }
   },
 };

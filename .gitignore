@@ -27,3 +27,6 @@ yarn-error.log*
 *.sln
 *.sw?
 #*.code-workspace
+
+# App credentials
+conf.ts
