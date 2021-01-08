@@ -51,7 +51,7 @@ export default class UserStoreModule extends VuexModule {
     try {
       const uid = await this.context.dispatch('getUid');
       const info = (await firebase.database().ref(`/users/${uid}/info`).once('value')).val();
-      this.context.commit('clearUserData', info)
+      this.context.commit('setUserData', info)
     } catch (e) {
       this.context.commit('setError', e);
     }

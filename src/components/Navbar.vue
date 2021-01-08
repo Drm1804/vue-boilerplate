@@ -69,8 +69,7 @@ export default class Navbar extends Vue {
   }
 
   get name() {
-    // return this.$store.getters.info.name;
-    return "Alex";
+    return this.$store.getters.userData.name;
   }
 
   beforeDestroy() {

@@ -40,9 +40,9 @@ export default class MainLayout extends Vue {
   public loading = true;
 
   async mounted() {
-    // if (!Object.keys(this.$store.getters.info).length) {
-    //   await this.$store.dispatch("fetchInfo");
-    // }
+    if (!Object.keys(this.$store.getters.userData).length) {
+      await this.$store.dispatch("fetchUserData");
+    }
 
     this.loading = false;
   }
