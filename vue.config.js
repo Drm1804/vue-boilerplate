@@ -9,6 +9,7 @@ module.exports = {
   productionSourceMap: process.env.NODE_ENV !== "production",
   crossorigin: "use-credentials",
   lintOnSave: true,
+  transpileDependencies: ['vuex-module-decorators'],
   configureWebpack: (config) => {
     if (process.env.NODE_ENV === "development") {
       config.devtool = "source-map";

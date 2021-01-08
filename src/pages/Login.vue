@@ -85,7 +85,7 @@ export default class Login extends Vue {
   email = "";
   password = "";
 
-  async submitForm() {
+  async submitForm(): Promise<void> {
     if (this.$v.$invalid) {
       this.$v.$touch();
       return;

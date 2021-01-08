@@ -110,20 +110,18 @@ export default class Registration extends Vue {
   public name = "";
   public agree = false;
 
-  async submitForm() {
+  async submitForm(): Promise<void> {
     if (this.$v.$invalid) {
       this.$v.$touch();
       return;
     }
 
-    const formData = {
-      email: this.email,
-      password: this.password,
-      name: this.name,
-    };
-
     try {
-      await this.$store.dispatch("register", formData);
+      await this.$store.dispatch("registration", {
+        email: this.email,
+        password: this.password,
+        name: this.name,
+      });
       this.$router.push("/");
     } catch (e) {
       console.error(e);
