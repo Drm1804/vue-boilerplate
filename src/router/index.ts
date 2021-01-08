@@ -3,11 +3,11 @@ import VueRouter, { RouteConfig } from "vue-router";
 
 Vue.use(VueRouter);
 
-const routes: Array<RouteConfig> = [
+export const routes: Array<RouteConfig> = [
   {
     path: "/",
-    name: "Home",
-    meta: { layout: "main" },
+    name: "Главная",
+    meta: { layout: "main", sideMenu: true, exact: true },
     component: () => import(/* webpackChunkName: "home" */ "@/pages/Home.vue"),
   },
   {
@@ -19,8 +19,8 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/examples",
-    name: "Examples",
-    meta: { layout: "main" },
+    name: "Примеры",
+    meta: { layout: "main", sideMenu: true },
     component: () =>
       import(/* webpackChunkName: "examples" */ "@/pages/Examples.vue"),
   },
@@ -38,7 +38,8 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/about",
-    name: "About",
+    name: "О сборке",
+    meta: { layout: "main", sideMenu: true },
     component: () =>
       import(/* webpackChunkName: "about" */ "@/pages/About.vue"),
   },

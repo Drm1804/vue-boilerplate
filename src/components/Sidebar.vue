@@ -14,17 +14,33 @@
 </template>
 
 <script lang="ts">
+import { routes } from "@/router";
 import { Vue, Component, Prop } from "@/utils/vue-imports";
+import { RouteConfig } from 'vue-router';
 @Component({
   name: "Navbar",
 })
 export default class Navbar extends Vue {
-  /* eslint-disable */
   @Prop() value: any;
-  links = [
-    { title: "Главная", url: "/", exact: true },
-    { title: "Примеры", url: "/examples" },
-    { title: "О сборке", url: "/about" },
-  ];
+
+  get links(): MenuItem[] {
+    return routes.reduce((res: MenuItem[], el: RouteConfig) => {
+      if (el && el.meta && el.meta.sideMenu) {
+        res.push({
+          title: el.name,
+          url: el.path,
+          exact: el.meta.exact,
+        });
+      }
+      return res;
+    }, []);
+  }
+}
+
+interface MenuItem {
+  title: string | undefined;
+  url: string;
+  exact?: boolean;
 }
 </script>
+
